@@ -1,0 +1,325 @@
+@import '../variables.scss';
+
+.page-form {
+  width: 100%;
+  min-width: 320px;
+}
+.page-form__wrapper {
+  width: 280px;
+  background-color: $bg-lightgrey;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: content-box;
+  padding-bottom: 90px;
+}
+
+.page-form__title {
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 30px 0;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 30px;
+  color: #000000;
+}
+
+.page-form__form input[type='text'],
+.page-form__form input[type='tel'],
+.page-form__form input[type='email'] {
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 5px;
+  border: 1px solid #e5ddd5;
+  &::placeholder {
+    color: #000000;
+    font-size: 18px;
+    line-height: 18px;
+    padding-left: 18px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: bold;
+  }
+}
+
+.page-form__form textarea {
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid #e5ddd5;
+  resize: vertical;
+  &::placeholder {
+    color: #000000;
+    font-size: 18px;
+    line-height: 18px;
+    padding-left: 18px;
+    padding-top: 10px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: bold;
+  }
+}
+
+.beard-selector__title {
+  width: 280px;
+  margin: 30px 0;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.page-form__beard-radio ul {
+  width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.beard-filter__option {
+  width: 70px;
+  margin: 10px;
+  min-height: 180px;
+  text-align: center;
+}
+
+.page-form__beard-radio input {
+  display: none;
+}
+
+.beard-filter__option input + label {
+  position: relative;
+  top: 30px;
+  cursor: pointer;
+  &::before {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #e5ddd5;
+    position: absolute;
+    left: 0;
+    top: -60px;
+    border-radius: 50%;
+  }
+}
+.beard-filter__option input:checked + label {
+  &::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #e5ddd5;
+    position: absolute;
+    left: 15px;
+    top: -45px;
+    border-radius: 50%;
+  }
+}
+
+.form__beard {
+  &--admiral {
+    background-image: url('../assets/beard-1.svg.png');
+    background-position: 8px 65px;
+    background-repeat: no-repeat;
+  }
+  &--wood {
+    background-image: url('../assets/beard-2.svg.png');
+    background-position: 8px 65px;
+    background-repeat: no-repeat;
+  }
+  &--polar {
+    background-image: url('../assets/beard-3.svg.png');
+    background-position: 2px 65px;
+    background-repeat: no-repeat;
+  }
+  &--boyar {
+    background-image: url('../assets/beard-4.svg.png');
+    background-position: 8px 65px;
+    background-repeat: no-repeat;
+  }
+  &--wiseman {
+    background-image: url('../assets/beard-5.svg.png');
+    background-position: 12px 65px;
+    background-repeat: no-repeat;
+  }
+}
+
+.addition-settings__title {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.page-form__addition-settings ul {
+  width: 280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.addition-settings__option {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.page-form__addition-settings input {
+  display: none;
+}
+
+.addition-settings__option input + label {
+  position: relative;
+  padding-left: 50px;
+  cursor: pointer;
+  &::before {
+    content: '';
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border: 1px solid #e5ddd5;
+    position: absolute;
+    left: 0;
+    top: -8px;
+  }
+}
+
+.addition-settings__option input:checked + label {
+  position: relative;
+  padding-left: 50px;
+  &::after {
+    content: '';
+    width: 15px;
+    height: 7px;
+    border: 3px solid #000;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 10px;
+    top: 4px;
+  }
+}
+.form__button {
+  color: #fff;
+  font-family: 'PT Sans Narrow';
+  font-size: 18px;
+  font-weight: normal;
+  background-color: #826550;
+}
+.page-form__button {
+  display: none;
+}
+
+@media (min-width: $tablet-width) {
+  .page-form {
+    width: 100%;
+    background: $bg-lightgrey;
+    margin-bottom: 70px;
+  }
+  .page-form__wrapper {
+    width: 640px;
+    padding: 0 64px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .page-form__title {
+    width: 320px;
+    font-size: 40px;
+    line-height: 40px;
+    flex-grow: 1;
+    text-align: left;
+  }
+  .page-form__button {
+    display: block;
+    padding: 0;
+    padding-top: 13px;
+    margin: 0 auto;
+    height: 32px;
+    width: 160px;
+  }
+  .page-form__form {
+    width: 100%;
+  }
+
+  .page-form__form input[type='text'] {
+    width: 213px;
+  }
+  .page-form__name {
+    display: flex;
+    flex-wrap: nowrap;
+    // width: 213px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .page-form__name input {
+    &:first-of-type {
+      order: 1;
+    }
+    &:last-of-type {
+      order: 2;
+    }
+  }
+
+  .page-form__form input[type='tel'] {
+    margin-bottom: 20px;
+  }
+
+  .page-form__beard-radio ul {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  .beard-selector__title {
+    width: 320px;
+    font-size: 30px;
+  }
+
+  .page-form__addition-settings ul {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .addition-settings__title {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+  .addition-settings__option {
+    width: 320px;
+  }
+  .form__button {
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .page-form__wrapper {
+    width: 960px;
+  }
+  .page-form__form input[type='text'] {
+    width: 295px;
+  }
+
+  .page-form__data input {
+    margin-right: 36px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  .page-form__form input[type='tel'] {
+    width: 460px;
+  }
+  .page-form__form input[type='email'] {
+    width: 460px;
+  }
+
+  .page-form__addition-settings ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  .addition-settings__option {
+    width: 250px;
+  }
+}

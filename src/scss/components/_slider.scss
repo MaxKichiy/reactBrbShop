@@ -1,0 +1,71 @@
+@import '../variables.scss';
+
+.slider__item {
+  display: none;
+  &--active {
+    display: block;
+  }
+}
+
+.slider__toggles {
+  text-align: center;
+}
+
+.slider__toggle {
+  background-color: transparent;
+  border: 1px solid #fff;
+  width: 11px;
+  height: 11px;
+  margin: 15px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  &--active {
+    background-color: #fff;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    padding: 16px;
+    transform: rotate(0);
+    cursor: pointer;
+  }
+}
+.reviews__toggles .slider__toggle {
+  background-color: transparent;
+  border: 1px solid #000;
+  width: 11px;
+  height: 11px;
+  margin: 15px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  &--active {
+    background-color: #000;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: -11px;
+    padding: 16px;
+    transform: rotate(0);
+    cursor: pointer;
+  }
+}
+.reviews__item.slider__item {
+  display: none;
+  &--active {
+    display: flex;
+  }
+}
+
+@media (min-width: $tablet-width) {
+  .slider__item {
+    display: block;
+  }
+
+  .slider__toggles {
+    display: none;
+  }
+}

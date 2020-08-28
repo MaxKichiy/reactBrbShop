@@ -1,0 +1,130 @@
+@import '../variables.scss';
+
+.page-footer__wrapper {
+  position: relative;
+  top: -50px;
+  width: 280px;
+  margin: 0 auto;
+}
+.contacts__title {
+  padding-bottom: 15px;
+}
+
+.page-footer__contacts {
+  text-align: center;
+}
+.contacts__phone {
+  margin: 20px 0;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 18px;
+  border: 1px solid #3e3e3e;
+}
+
+.social__title {
+  display: none;
+}
+
+.social__list {
+  width: 280px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+.social__item {
+  display: flex;
+  width: 101px;
+  height: 100px;
+  border: 1px solid #3e3e3e;
+}
+
+.social__item a {
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.social__link > svg > path {
+  fill: #fff;
+}
+.page-footer__copyright {
+  text-align: center;
+}
+.copyright__link.button {
+  margin-top: 10px;
+  border: 1px solid #3e3e3e;
+  color: #fff;
+}
+.copyright__text {
+  font-weight: 400;
+}
+.contacts__phone--tablet {
+  display: none;
+}
+
+@media (min-width: $tablet-width) {
+  .page-footer__wrapper {
+    width: 640px;
+    top: -30px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .page-footer__contacts {
+    width: 320px;
+    flex-grow: 1;
+  }
+  .page-footer__copyright {
+    width: 160px;
+  }
+  .contacts__title {
+    display: flex;
+  }
+  .contacts__text {
+    width: 320px;
+  }
+  .contacts__phone--tablet {
+    display: block;
+    text-align: left;
+  }
+  .copyright__link.button {
+    width: 160px;
+  }
+  .contacts__phone {
+    display: none;
+  }
+  .page-footer__social {
+    order: 2;
+  }
+  .social__list {
+    padding-top: 30px;
+    width: 640px;
+    box-sizing: border-box;
+  }
+  .social__item {
+    width: 213px;
+  }
+}
+
+@media (min-width: $desktop-width) {
+  .page-footer__wrapper {
+    width: 960px;
+    max-height: 200px;
+    justify-content: space-between;
+  }
+  .page-footer__contacts {
+    width: 320px;
+    flex-grow: 0;
+  }
+  .page-footer__social {
+    order: 0;
+    width: 320px;
+  }
+  .social__list {
+    width: 190px;
+  }
+  .social__item {
+    width: 60px;
+    height: 60px;
+  }
+}
