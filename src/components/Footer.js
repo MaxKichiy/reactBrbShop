@@ -71,7 +71,7 @@ function Footer() {
         </div>
         <div className='page-footer__copyright copyright'>
           <b className='copyright__text'>Разработано:</b>
-          <a href='' className='button copyright__link'>
+          <a href='/' className='button copyright__link'>
             Mark1
           </a>
         </div>

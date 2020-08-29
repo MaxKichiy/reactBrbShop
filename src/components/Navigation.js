@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavigationSiteItem from './NavigationSiteItem';
+import classNames from 'classnames';
 
-function Navigation() {
+const Navigation = React.memo(function Navigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.addEventListener('click', handeOutsideClick);
+  }, []);
+  const menuRef = useRef();
+  const onClickHandler = () => {
+    setIsOpen(!isOpen);
+  };
+  const handeOutsideClick = (e) => {
+    if (!e.path.includes(menuRef.current)) {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <nav className='main-nav main-nav--closed main-nav--nojs'>
-      <button className='main-nav__button' type='button'></button>
+    <nav
+      ref={menuRef}
+      className={classNames(
+        { 'main-nav main-nav--closed': !isOpen },
+        { 'main-nav main-nav--opened': isOpen }
+      )}
+    >
+      <button
+        className='main-nav__button'
+        onClick={onClickHandler}
+        type='button'
+      ></button>
       <div className='main-nav__wrapper'>
         <ul className='main-nav__list site-list'>
           <NavigationSiteItem link='/' active exact>
@@ -59,6 +85,6 @@ function Navigation() {
       </div>
     </nav>
   );
-}
+});
 
 export default Navigation;

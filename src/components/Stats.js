@@ -48,7 +48,7 @@ function Stats() {
           </tr>
           <tr>
             <td className='stats__value'>
-              500 000 <sup>*</sup>
+              50 000 <sup>*</sup>
             </td>
             <td className='stats__field'>
               лайков и <br />

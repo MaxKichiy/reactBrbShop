@@ -31,7 +31,7 @@ function News() {
             </p>
           </li>
         </ul>
-        <a href='#' className='news__to-all button'>
+        <a href='/news' className='news__to-all button'>
           показать все
         </a>
       </div>

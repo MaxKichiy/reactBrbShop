@@ -35,7 +35,7 @@ function Form() {
             <ul>
               <li className='beard-filter__option form__beard--admiral'>
                 <input
-                  checked
+                  defaultChecked
                   type='radio'
                   value='admiral'
                   name='beard'
@@ -84,7 +84,7 @@ function Form() {
             <ul>
               <li className='addition-settings__option'>
                 <input
-                  checked
+                  defaultChecked
                   type='checkbox'
                   name='Подкрасить бороду'
                   value='Подкрасить бороду'
