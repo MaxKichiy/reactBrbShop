@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReviewsTiles from './ReviewsTiles';
 import SliderButton from './SliderButton';
+import ReviewsButton from './ReviewsButton';
 
 function Reviews() {
   const [isActive, setIsActive] = useState(0);
@@ -29,6 +30,15 @@ function Reviews() {
 
   const onClickRevHandler = (data) => {
     setIsActive(revTypes.indexOf(data));
+    if (data === 'prev' && isActive == 0) {
+      setIsActive(2);
+    } else if (data === 'next' && isActive == 2) {
+      setIsActive(0);
+    } else if (data === 'prev') {
+      setIsActive(isActive - 1);
+    } else if (data === 'next') {
+      setIsActive(isActive + 1);
+    }
   };
 
   return (
@@ -52,8 +62,8 @@ function Reviews() {
             );
           })}
 
-          <button className='reviews__prev' type='button'></button>
-          <button className='reviews__next' type='button'></button>
+          <ReviewsButton type='prev' onClick={onClickRevHandler} />
+          <ReviewsButton type='next' onClick={onClickRevHandler} />
         </div>
         <p className='reviews__toggles slider__toggles'>
           {revTypes.map((el, index) => {
