@@ -154,7 +154,7 @@
     justify-content: space-between;
   }
   .news__item {
-    width: 300px;
+    width: auto;
     margin: 0;
     box-sizing: content-box;
     margin-top: 25px;
@@ -210,17 +210,18 @@
 
   .news__list {
     width: 960px;
+    margin: 0 auto;
   }
   .news__text {
     width: 230px;
+    word-wrap: wrap;
   }
 
   .news__item {
-    width: 280px;
+    width: 300px;
     box-sizing: content-box;
-    margin: 0;
-    flex-grow: 1;
-    margin: 0;
+    // flex-grow: 1;
+    margin: 0 auto;
     margin-top: 40px;
   }
 

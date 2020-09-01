@@ -7,6 +7,7 @@ import Main from './pages/Main';
 import Form from './pages/Form';
 import Portfolio from './pages/Portfolio';
 import { Route, Switch } from 'react-router';
+import NewsPage from './pages/NewsPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' component={Main} exact />
           <Route path='/portfolio' component={Portfolio} exact />
           <Route path='/form' component={Form} exact />
+          <Route path='/news' component={NewsPage} exact />
         </Switch>
       </div>
       <Footer />

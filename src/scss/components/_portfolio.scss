@@ -263,6 +263,12 @@
   .portfolio__arrow {
     top: 50px;
     margin-bottom: 0;
+    &::before {
+      height: 143%;
+    }
+    &::after {
+      height: 143%;
+    }
   }
 
   .price {

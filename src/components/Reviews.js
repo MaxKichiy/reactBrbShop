@@ -17,22 +17,20 @@ function Reviews() {
     <>
       <cite className='reviews__author-name'>Питер Паркер</cite>
       <br />
-      Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было
-      видно новую татуировку!
+      Спасибо за стрижку! Теперь моя укладка будет держаться во время полетов.
     </>,
     <>
       <cite className='reviews__author-name'>Джон Голт</cite>
       <br />
-      Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было
-      видно новую татуировку!
+      Спасибо за то что вы есть! Теперь я уверен что нам нужен такой в долине.
     </>,
   ];
 
   const onClickRevHandler = (data) => {
     setIsActive(revTypes.indexOf(data));
-    if (data === 'prev' && isActive == 0) {
+    if (data === 'prev' && isActive === 0) {
       setIsActive(2);
-    } else if (data === 'next' && isActive == 2) {
+    } else if (data === 'next' && isActive === 2) {
       setIsActive(0);
     } else if (data === 'prev') {
       setIsActive(isActive - 1);

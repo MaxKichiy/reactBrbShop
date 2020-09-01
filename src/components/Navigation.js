@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import NavigationSiteItem from './NavigationSiteItem';
 import classNames from 'classnames';
 
-const Navigation = React.memo(function Navigation() {
+const Navigation = React.memo(function Navigation(props) {
   const [isOpen, setIsOpen] = useState(false);
-
   useEffect(() => {
     document.body.addEventListener('click', handeOutsideClick);
   }, []);
+  console.log('rendered');
   const menuRef = useRef();
   const onClickHandler = () => {
     setIsOpen(!isOpen);
@@ -41,8 +41,8 @@ const Navigation = React.memo(function Navigation() {
           <NavigationSiteItem link='/form' active exact>
             Записаться
           </NavigationSiteItem>
-          <NavigationSiteItem link='/contacts' active exact>
-            Контакты
+          <NavigationSiteItem link='/news' active exact>
+            Новости
           </NavigationSiteItem>
         </ul>
         <ul className='main-nav__list user-list'>

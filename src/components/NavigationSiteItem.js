@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function NavigationSiteItem(props) {
+const NavigationSiteItem = React.memo(function NavigationSiteItem(props) {
   return (
     <li className='site-list__item '>
       <NavLink
@@ -13,6 +13,6 @@ function NavigationSiteItem(props) {
       </NavLink>
     </li>
   );
-}
+});
 
 export default NavigationSiteItem;

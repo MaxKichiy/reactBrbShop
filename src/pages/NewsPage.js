@@ -1,26 +1,32 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchNews } from '../redux/actions/news';
 import { NavLink } from 'react-router-dom';
 
-function News() {
-  const newsList = useSelector((state) => state.news.news);
-  const newsListSmall = newsList.map((el, index) => {
+function NewsPage() {
+  const dispatch = useDispatch();
+  const news = useSelector((state) => state.news.news);
+
+  const newsList = news.map((el, index) => {
     return (
-      <li className='news__item' key={`${el}_${index}`}>
+      <li className='news__item newspage__item' key={`${el}_${index}`}>
         <time className='news__date' dateTime='2020-08-20'>
           <b className='news__day'>{11}</b>
           <span className='news__month'>авг</span>
           <div className='news__date--arrow'></div>
         </time>
-        <p className='news__text newspage__text'>{el.title}</p>
+        <p className='news__text newspage__text'>{el.text}</p>
       </li>
     );
   });
+
   return (
-    <section className='news'>
-      <div className='news__arrow'></div>
-      <div className='news__wrapper'>
+    <section className='news newspage'>
+      <div className='news__wrapper newspage__wrapper'>
         <h2 className='news__title'>Новости и акции</h2>
+        <NavLink to='/' className='portfolio__button button'>
+          На главную
+        </NavLink>
         <ul className='news__list'>
           {/* <li className='news__item'>
             <time className='news__date' dateTime='2020-08-20'>
@@ -45,14 +51,11 @@ function News() {
               записаться!
             </p>
           </li> */}
-          {newsListSmall.slice(4)}
+          {newsList}
         </ul>
-        <NavLink to='/news' className='news__to-all button'>
-          показать все
-        </NavLink>
       </div>
     </section>
   );
 }
 
-export default News;
+export default NewsPage;
