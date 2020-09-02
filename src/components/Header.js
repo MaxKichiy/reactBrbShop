@@ -6,7 +6,6 @@ import Navigation from './Navigation';
 import { NavLink } from 'react-router-dom';
 
 const Header = React.memo(function Header() {
-  console.log('rendered');
   return (
     <header className='page-header'>
       <NavLink to='/' className='page-header__logo'>

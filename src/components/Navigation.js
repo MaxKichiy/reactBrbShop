@@ -8,7 +8,6 @@ const Navigation = React.memo(function Navigation(props) {
   useEffect(() => {
     document.body.addEventListener('click', handeOutsideClick);
   }, []);
-  console.log('rendered');
   const menuRef = useRef();
   const onClickHandler = () => {
     setIsOpen(!isOpen);
