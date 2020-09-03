@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Header from './components/Header';
 
@@ -8,8 +8,14 @@ import FormPage from './pages/FormPage';
 import Portfolio from './pages/Portfolio';
 import { Route, Switch } from 'react-router';
 import NewsPage from './pages/NewsPage';
+import { useDispatch } from 'react-redux';
+import { fetchNews } from './redux/actions/news';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, []);
   return (
     <div className='wrapper'>
       <Header />

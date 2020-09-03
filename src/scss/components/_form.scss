@@ -13,6 +13,18 @@
   padding-bottom: 90px;
 }
 
+.form_error {
+  color: red;
+  font-size: 14px;
+  padding-left: 20px;
+  position: relative;
+}
+.radio_error {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
 .page-form__title {
   font-size: 30px;
   line-height: 30px;
@@ -32,32 +44,42 @@ fieldset {
 .page-form__form input[type='text'],
 .page-form__form input[type='tel'],
 .page-form__form input[type='email'] {
+  color: #000000;
+  font-size: 18px;
+  line-height: 18px;
+  padding-left: 18px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: bold;
   width: 100%;
   min-height: 50px;
   margin-bottom: 5px;
   border: 1px solid #e5ddd5;
   &::placeholder {
-    color: #000000;
+    color: #aaaaaa;
     font-size: 18px;
     line-height: 18px;
-    padding-left: 18px;
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: bold;
   }
 }
 
 .page-form__form textarea {
+  color: #000000;
+  font-size: 18px;
+  line-height: 18px;
+  padding-left: 18px;
+  padding-top: 10px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: bold;
   width: 100%;
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid #e5ddd5;
   resize: vertical;
   &::placeholder {
-    color: #000000;
+    color: #aaaaaa;
     font-size: 18px;
     line-height: 18px;
-    padding-left: 18px;
-    padding-top: 10px;
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: bold;
   }
@@ -71,16 +93,24 @@ fieldset {
   text-transform: uppercase;
 }
 .page-form__beard-radio ul {
+  position: relative;
   width: 280px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
 .beard-filter__option {
   width: 70px;
   margin: 10px;
   min-height: 180px;
   text-align: center;
+  .radio_error {
+    position: absolute;
+    color: red;
+    left: 0;
+    bottom: 0;
+  }
 }
 
 .page-form__beard-radio input {
@@ -205,6 +235,7 @@ fieldset {
   font-size: 18px;
   font-weight: normal;
   background-color: #826550;
+  cursor: pointer;
 }
 .page-form__button {
   display: none;
@@ -223,6 +254,20 @@ fieldset {
     flex-wrap: wrap;
     align-items: center;
   }
+  .form_error {
+    color: red;
+    position: absolute;
+    font-size: 14px;
+    bottom: -20px;
+    z-index: 10;
+  }
+  .name__input {
+    position: relative;
+  }
+  .page-form__data {
+    margin-bottom: 20px;
+  }
+
   .page-form__title {
     width: 320px;
     font-size: 40px;
@@ -246,23 +291,24 @@ fieldset {
     width: 213px;
   }
   .page-form__name {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     // width: 213px;
     justify-content: space-between;
     margin-bottom: 20px;
   }
-  .page-form__name input {
-    &:first-of-type {
-      order: 1;
-    }
-    &:last-of-type {
-      order: 2;
-    }
-  }
+  // .page-form__name input {
+  //   &:first-of-type {
+  //     order: 1;
+  //   }
+  //   &:last-of-type {
+  //     order: 2;
+  //   }
+  // }
 
-  .page-form__form input[type='tel'] {
-    margin-bottom: 20px;
+  .page-form__form input[type='email'] {
+    margin-top: 20px;
   }
 
   .page-form__beard-radio ul {
@@ -301,13 +347,21 @@ fieldset {
   .page-form__form input[type='text'] {
     width: 295px;
   }
+  .page-form__data {
+    position: relative;
+    .name__input {
+      width: 460px;
+      display: inline-block;
+    }
+  }
 
-  .page-form__data input {
-    margin-right: 36px;
+  .page-form__data .name__input {
+    margin-right: 40px;
     &:last-of-type {
       margin-right: 0;
     }
   }
+
   .page-form__form input[type='tel'] {
     width: 460px;
   }

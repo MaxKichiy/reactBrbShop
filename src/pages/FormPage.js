@@ -1,7 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+
+import axios from 'axios';
+import MyTextInput from '../components/Form/MyTextInput';
+import MyRadioInput from '../components/Form/MyRadioInput';
 
 function FormPage() {
   return (
@@ -11,51 +15,82 @@ function FormPage() {
         <NavLink to='/' className='page-form__button button'>
           На главную
         </NavLink>
+
         <Formik
           initialValues={{
-            lastName: '',
             firstName: '',
+            lastName: '',
             fatherName: '',
             phone: '',
             email: '',
             info: '',
+            beard: '',
+            'Подкрасить бороду': false,
+            'Причесать бороду': false,
+            'Убрать седину': false,
+            'Накрутить усы': false,
+            'Подровнять виски': false,
+            'Отполировать лысину': false,
           }}
-          // validationSchema={Yup.object({
-          //   lastName: Yup.string()
-          //     .max(15, 'максимум 15 символов')
-          //     .required('Обязательное поле'),
-          //   firstName: Yup.string()
-          //     .max(20, 'максимум 20 символов')
-          //     .required('Обязательное поле'),
-          //   phone: Yup.number()
-          //     .max(10, 'номер должен состоять из 10 цифр, начиная с 0')
-          //     .required('Обязательное поле'),
-          //   email: Yup.string()
-          //     .email('Не верный email адресс')
-          //     .required('Обязательное поле'),
-          // })}
+          validationSchema={Yup.object({
+            firstName: Yup.string()
+              .max(20, 'максимум 20 символов')
+              .required('Обязательное поле'),
+            lastName: Yup.string()
+              .max(15, 'максимум 15 символов')
+              .required('Обязательное поле'),
+            phone: Yup.number()
+              .min(11111111, 'номер должен состоять из 10 цифр, начиная с 0')
+              .lessThan(999999999, 'idi naxooy pidar')
+              .required('Обязательное поле'),
+            email: Yup.string()
+              .email('Не верный email адресс')
+              .required('Обязательное поле'),
+            beard: Yup.string()
+              .oneOf(
+                ['admiral', 'polar', 'wood', 'boyar', 'wiseman'],
+                'Invalid Job Type'
+              )
+              .required('Обязательное поле'),
+          })}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            axios
+              .post(
+                'https://reactbrbshop.firebaseio.com/orders.json',
+                JSON.stringify(values, null, 2)
+              )
+              .then((response) => {
+                setSubmitting(false);
+              });
+            // setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            //   setSubmitting(false);
+            // }, 400);
           }}
         >
           <Form className='page-form__form'>
             <div className='page-form__name'>
-              <Field name='lastName' type='text' placeholder='Фамилия' />
-              <Field name='firstName' type='text' placeholder='Имя' />
-              <Field name='fatherName' type='text' placeholder='Отчество' />
+              <MyTextInput name='firstName' type='text' placeholder='Имя' />
+              <MyTextInput name='lastName' type='text' placeholder='Фамилия' />
+              <MyTextInput
+                name='fatherName'
+                type='text'
+                placeholder='Отчество'
+              />
             </div>
-            <fieldset className='page-form__data'>
-              <Field type='tel' name='phone' placeholder='Контактный телефон' />
-              <Field
+            <div className='page-form__data'>
+              <MyTextInput
+                type='tel'
+                name='phone'
+                placeholder='Контактный телефон'
+              />
+              <MyTextInput
                 type='email'
                 name='email'
                 placeholder='Контактный e-mail'
               />
-            </fieldset>
-            <Field
+            </div>
+            <MyTextInput
               as='textarea'
               type='text'
               name='info'
@@ -69,34 +104,49 @@ function FormPage() {
               </legend>
               <ul>
                 <li className='beard-filter__option form__beard--admiral'>
-                  <Field
+                  <MyRadioInput
+                    label='адмирал'
                     type='radio'
                     value='admiral'
                     name='beard'
                     id='admiral'
                   />
-                  <label htmlFor='admiral'>адмирал</label>
                 </li>
                 <li className='beard-filter__option form__beard--wood'>
-                  <Field type='radio' value='wood' name='beard' id='wood' />
-                  <label htmlFor='wood'>лесоруб</label>
+                  <MyRadioInput
+                    label='лесоруб'
+                    type='radio'
+                    value='wood'
+                    name='beard'
+                    id='wood'
+                  />
                 </li>
                 <li className='beard-filter__option form__beard--polar'>
-                  <Field type='radio' value='polar' name='beard' id='polar' />
-                  <label htmlFor='polar'>полярник</label>
+                  <MyRadioInput
+                    label='полярник'
+                    type='radio'
+                    value='polar'
+                    name='beard'
+                    id='polar'
+                  />
                 </li>
                 <li className='beard-filter__option form__beard--boyar'>
-                  <Field type='radio' value='boyar' name='beard' id='boyar' />
-                  <label htmlFor='boyar'>боярин</label>
+                  <MyRadioInput
+                    label='боярин'
+                    type='radio'
+                    value='boyar'
+                    name='beard'
+                    id='boyar'
+                  />
                 </li>
                 <li className='beard-filter__option form__beard--wiseman'>
-                  <Field
+                  <MyRadioInput
+                    label='мудрец'
                     type='radio'
                     value='wiseman'
                     name='beard'
                     id='wiseman'
                   />
-                  <label htmlFor='wiseman'>мудрец</label>
                 </li>
               </ul>
             </fieldset>
@@ -106,37 +156,52 @@ function FormPage() {
               </legend>
               <ul>
                 <li className='addition-settings__option'>
-                  <Field
+                  <MyTextInput
+                    label='Подкрасить бороду'
                     type='checkbox'
                     name='Подкрасить бороду'
-                    value='Подкрасить бороду'
                     id='color'
                   />
-                  <label htmlFor='color'>Подкрасить бороду</label>
                 </li>
                 <li className='addition-settings__option'>
-                  <Field type='checkbox' name='Накрутить усы' id='spin' />
-                  <label htmlFor='spin'>Накрутить усы</label>
+                  <MyTextInput
+                    label='Накрутить усы'
+                    type='checkbox'
+                    name='Накрутить усы'
+                    id='spin'
+                  />
                 </li>
                 <li className='addition-settings__option'>
-                  <Field type='checkbox' name='Причесать бороду' id='comb' />
-                  <label htmlFor='comb'>Причесать бороду</label>
+                  <MyTextInput
+                    label='Причесать бороду'
+                    type='checkbox'
+                    name='Причесать бороду'
+                    id='comb'
+                  />
                 </li>
                 <li className='addition-settings__option'>
-                  <Field type='checkbox' name='Подровнять виски' id='align' />
-                  <label htmlFor='align'>Подровнять виски</label>
+                  <MyTextInput
+                    label='Подровнять виски'
+                    type='checkbox'
+                    name='Подровнять виски'
+                    id='align'
+                  />
                 </li>
                 <li className='addition-settings__option'>
-                  <Field type='checkbox' name='Убрать седину' id='grey' />
-                  <label htmlFor='grey'>Убрать седину</label>
+                  <MyTextInput
+                    label='Убрать седину'
+                    type='checkbox'
+                    name='Убрать седину'
+                    id='grey'
+                  />
                 </li>
                 <li className='addition-settings__option'>
-                  <Field
+                  <MyTextInput
+                    label='Отполировать лысину'
                     type='checkbox'
                     name='Отполировать лысину'
                     id='polish'
                   />
-                  <label htmlFor='polish'>Отполировать лысину</label>
                 </li>
               </ul>
             </fieldset>
@@ -145,119 +210,6 @@ function FormPage() {
             </button>
           </Form>
         </Formik>
-
-        {/* <form className='page-form__form'>
-          <div className='page-form__name'>
-            <input type='text' name='surname' placeholder='Фамилия' />
-            <input type='text' name='name' placeholder='Имя' />
-            <input type='text' name='fatherName' placeholder='Отчество' />
-          </div>
-
-          <fieldset className='page-form__data'>
-            <input type='tel' name='phone' placeholder='Контактный телефон' />
-            <input type='email' name='email' placeholder='Контактный e-mail' />
-          </fieldset>
-
-          <textarea
-            name='info'
-            cols='37'
-            rows='6'
-            placeholder='Доп. информация для мастера'
-          ></textarea>
-
-          <fieldset className='page-form__beard-radio beard-selector'>
-            <legend className='beard-selector__title'>
-              Выберите модель бороды:
-            </legend>
-            <ul>
-              <li className='beard-filter__option form__beard--admiral'>
-                <input
-                  defaultChecked
-                  type='radio'
-                  value='admiral'
-                  name='beard'
-                  id='admiral'
-                ></input>
-                <label htmlFor='admiral'>адмирал</label>
-              </li>
-              <li className='beard-filter__option form__beard--wood'>
-                <input type='radio' value='wood' name='beard' id='wood'></input>
-                <label htmlFor='wood'>лесоруб</label>
-              </li>
-              <li className='beard-filter__option form__beard--polar'>
-                <input
-                  type='radio'
-                  value='polar'
-                  id='polar'
-                  name='beard'
-                ></input>
-                <label htmlFor='polar'>полярник</label>
-              </li>
-              <li className='beard-filter__option form__beard--boyar'>
-                <input
-                  type='radio'
-                  value='boyar'
-                  id='boyar'
-                  name='beard'
-                ></input>
-                <label htmlFor='boyar'>боярин</label>
-              </li>
-              <li className='beard-filter__option form__beard--wiseman'>
-                <input
-                  type='radio'
-                  value='wiseman'
-                  id='wiseman'
-                  name='beard'
-                ></input>
-                <label htmlFor='wiseman'>мудрец</label>
-              </li>
-            </ul>
-          </fieldset>
-
-          <fieldset className='page-form__addition-settings addition-settings'>
-            <legend className='addition-settings__title'>
-              Дополнительные услуги:
-            </legend>
-            <ul>
-              <li className='addition-settings__option'>
-                <input
-                  defaultChecked
-                  type='checkbox'
-                  name='Подкрасить бороду'
-                  value='Подкрасить бороду'
-                  id='color'
-                />
-                <label htmlFor='color'>Подкрасить бороду</label>
-              </li>
-              <li className='addition-settings__option'>
-                <input type='checkbox' name='Накрутить усы' id='spin' />
-                <label htmlFor='spin'>Накрутить усы</label>
-              </li>
-              <li className='addition-settings__option'>
-                <input type='checkbox' name='Причесать бороду' id='comb' />
-                <label htmlFor='comb'>Причесать бороду</label>
-              </li>
-              <li className='addition-settings__option'>
-                <input type='checkbox' name='Подровнять виски' id='align' />
-                <label htmlFor='align'>Подровнять виски</label>
-              </li>
-              <li className='addition-settings__option'>
-                <input type='checkbox' name='Убрать седину' id='grey' />
-                <label htmlFor='grey'>Убрать седину</label>
-              </li>
-              <li className='addition-settings__option'>
-                <input type='checkbox' name='Отполировать лысину' id='polish' />
-                <label htmlFor='polish'>Отполировать лысину</label>
-              </li>
-            </ul>
-          </fieldset>
-
-          <input
-            className='form__button button'
-            type='submit'
-            value='Отправить заявку'
-          />
-        </form> */}
       </div>
       <div className='main__arrow news__arrow'></div>
     </main>
