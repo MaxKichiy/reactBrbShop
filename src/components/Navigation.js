@@ -8,12 +8,17 @@ const Navigation = React.memo(function Navigation(props) {
   useEffect(() => {
     document.body.addEventListener('click', handeOutsideClick);
   }, []);
+  const linkRef = useRef();
   const menuRef = useRef();
   const onClickHandler = () => {
     setIsOpen(!isOpen);
   };
   const handeOutsideClick = (e) => {
     if (!e.path.includes(menuRef.current)) {
+      setIsOpen(false);
+    }
+
+    if (e.path.includes(linkRef.current)) {
       setIsOpen(false);
     }
   };
@@ -32,7 +37,7 @@ const Navigation = React.memo(function Navigation(props) {
         type='button'
       ></button>
       <div className='main-nav__wrapper'>
-        <ul className='main-nav__list site-list'>
+        <ul className='main-nav__list site-list' ref={linkRef}>
           <NavigationSiteItem link='/' active exact>
             Главная
           </NavigationSiteItem>

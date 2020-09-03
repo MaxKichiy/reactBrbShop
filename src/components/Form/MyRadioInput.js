@@ -3,7 +3,6 @@ import { useField } from 'formik';
 
 function MyRadioInput({ label, as, ...props }) {
   const [field, meta] = useField(props);
-  console.log(as);
   let inputDron = (
     <>
       <div className='radio__input'>

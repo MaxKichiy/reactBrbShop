@@ -3,7 +3,6 @@ import { useField } from 'formik';
 
 function MyTextInput({ label, as, ...props }) {
   const [field, meta] = useField(props);
-  console.log(as);
   let inputDron = (
     <div className='name__input'>
       <input type='text' {...field} {...props} />
