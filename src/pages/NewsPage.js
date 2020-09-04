@@ -3,25 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../redux/actions/news';
 import { NavLink } from 'react-router-dom';
 
-const getMonth = (month) => {
-  const monthes = [
-    'янв',
-    'фев',
-    'мар',
-    'апр',
-    'мая',
-    'июл',
-    'июн',
-    'авг',
-    'сен',
-    'окт',
-    'ноя',
-    'дек',
-  ];
-  return monthes[month - 1];
-};
-
 function NewsPage() {
+  const getMonth = (month) => {
+    const monthes = [
+      'янв',
+      'фев',
+      'мар',
+      'апр',
+      'мая',
+      'июл',
+      'июн',
+      'авг',
+      'сен',
+      'окт',
+      'ноя',
+      'дек',
+    ];
+    return monthes[month - 1];
+  };
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news.news);
 

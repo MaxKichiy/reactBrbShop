@@ -100,11 +100,27 @@
     flex-wrap: nowrap;
   }
   .advantages__item {
+    position: relative;
     width: 320px;
+    margin-top: 30px;
     padding: 160px 35px 0px;
     text-align: center;
+    box-sizing: content-box;
 
-    border: none;
+    border-bottom: none;
+    &::after {
+      content: '';
+      border-right: 1px solid #4a4a4a;
+      position: absolute;
+      top: 30%;
+      bottom: 10%;
+      right: 0;
+    }
+    &:last-of-type {
+      &::after {
+        display: none;
+      }
+    }
     &--fast {
       background-image: url('../assets/fast.png');
       background-repeat: no-repeat;

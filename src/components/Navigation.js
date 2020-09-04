@@ -4,6 +4,7 @@ import NavigationSiteItem from './NavigationSiteItem';
 import classNames from 'classnames';
 
 const Navigation = React.memo(function Navigation(props) {
+  const [activeLink, setActiveLink] = useState('Главная');
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     document.body.addEventListener('click', handeOutsideClick);
@@ -23,6 +24,10 @@ const Navigation = React.memo(function Navigation(props) {
     }
   };
 
+  const activeHandler = (data) => {
+    setActiveLink(data);
+  };
+
   return (
     <nav
       ref={menuRef}
@@ -38,14 +43,33 @@ const Navigation = React.memo(function Navigation(props) {
       ></button>
       <div className='main-nav__wrapper'>
         <ul className='main-nav__list site-list' ref={linkRef}>
-          <NavigationSiteItem link='/' active exact>
+          <NavigationSiteItem
+            link='/'
+            onClick={activeHandler}
+            active={activeLink}
+            exact
+          >
             Главная
           </NavigationSiteItem>
-          <NavigationSiteItem link='/portfolio'>Наши работы</NavigationSiteItem>
-          <NavigationSiteItem link='/form' active exact>
+          <NavigationSiteItem
+            active={activeLink}
+            link='/portfolio'
+            onClick={activeHandler}
+          >
+            Наши работы
+          </NavigationSiteItem>
+          <NavigationSiteItem
+            active={activeLink}
+            link='/form'
+            onClick={activeHandler}
+          >
             Записаться
           </NavigationSiteItem>
-          <NavigationSiteItem link='/news' active exact>
+          <NavigationSiteItem
+            active={activeLink}
+            link='/news'
+            onClick={activeHandler}
+          >
             Новости
           </NavigationSiteItem>
         </ul>

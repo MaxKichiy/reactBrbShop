@@ -31,6 +31,7 @@
   margin: 25px 20px 0 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #e5ddd5;
+  align-items: center;
   &:last-of-type {
     border-bottom: none;
   }
@@ -215,6 +216,7 @@
   .news__text {
     width: 230px;
     word-wrap: wrap;
+    align-self: center;
   }
 
   .news__item {
