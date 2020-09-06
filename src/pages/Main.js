@@ -4,10 +4,11 @@ import Advantages from '../components/Advantages';
 import News from '../components/News';
 import Reviews from '../components/Reviews';
 
-function Main() {
+function Main(props) {
   return (
     <main className='page-main'>
       <h1 className='visually-hidden'>Свой Барбершоп</h1>
+
       <Stats />
       <Advantages />
       <News />

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import NavigationSiteItem from './NavigationSiteItem';
 import classNames from 'classnames';
 
@@ -10,6 +10,7 @@ const Navigation = React.memo(function Navigation(props) {
     document.body.addEventListener('click', handeOutsideClick);
   }, []);
   const linkRef = useRef();
+  const logRef = useRef();
   const menuRef = useRef();
   const onClickHandler = () => {
     setIsOpen(!isOpen);
@@ -22,12 +23,14 @@ const Navigation = React.memo(function Navigation(props) {
     if (e.path.includes(linkRef.current)) {
       setIsOpen(false);
     }
+    if (e.path.includes(logRef.current)) {
+      setIsOpen(false);
+    }
   };
 
   const activeHandler = (data) => {
     setActiveLink(data);
   };
-
   return (
     <nav
       ref={menuRef}
@@ -75,7 +78,15 @@ const Navigation = React.memo(function Navigation(props) {
         </ul>
         <ul className='main-nav__list user-list'>
           <li className='user-list__item'>
-            <NavLink to='/login' className='user-list__login'>
+            <NavLink
+              ref={logRef}
+              to={`${
+                props.history.location.pathname === '/'
+                  ? props.history.location.pathname + 'login'
+                  : props.history.location.pathname + '/login'
+              }`}
+              className='user-list__login'
+            >
               <svg
                 className='user-list__login-icon'
                 width='24'
@@ -115,4 +126,4 @@ const Navigation = React.memo(function Navigation(props) {
   );
 });
 
-export default Navigation;
+export default withRouter(Navigation);

@@ -86,6 +86,10 @@
   }
 }
 
+.site-list__item--active {
+  pointer-events: none;
+}
+
 @media (max-width: $mobile-only) {
   .main-nav--closed .site-list__item {
     display: none;
