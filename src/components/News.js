@@ -26,14 +26,18 @@ const News = React.memo(function News() {
   const newsList = useSelector((state) => state.news.news);
   const newsListSmall = newsList.map((el, index) => {
     return (
-      <li className='news__item' key={`${el}_${index}`}>
-        <time className='news__date' dateTime={el.date}>
-          <b className='news__day'>{el.date.split('-')[0]}</b>
-          <span className='news__month'>{getMonth(el.date.split('-')[1])}</span>
-          <div className='news__date--arrow'></div>
-        </time>
-        <p className='news__text newspage__text'>{el.title}</p>
-      </li>
+      <NavLink to={`/news#${index}`} key={`${el}_${index}`}>
+        <li className='news__item'>
+          <time className='news__date' dateTime={el.date}>
+            <b className='news__day'>{el.date.split('-')[0]}</b>
+            <span className='news__month'>
+              {getMonth(el.date.split('-')[1])}
+            </span>
+            <div className='news__date--arrow'></div>
+          </time>
+          <p className='news__text newspage__text'>{el.title}</p>
+        </li>
+      </NavLink>
     );
   });
   useEffect(() => {
@@ -51,7 +55,7 @@ const News = React.memo(function News() {
         <ul className='news__list'>
           {width >= '1200' ? newsListSmall.slice(3) : newsListSmall.slice(4)}
         </ul>
-        <NavLink to='/news' className='news__to-all button'>
+        <NavLink to='/news' className='portfolio__button news__to-all button'>
           показать все
         </NavLink>
       </div>

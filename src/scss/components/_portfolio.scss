@@ -233,6 +233,11 @@
     max-height: 45px;
     display: flex;
     justify-content: center;
+    &:active,
+    &:focus {
+      background-color: #d5c9bd;
+      opacity: 0.3;
+    }
   }
   .main__arrow.portfolio__arrow.portfolio__arrow--white {
     display: block;

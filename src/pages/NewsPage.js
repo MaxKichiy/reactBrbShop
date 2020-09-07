@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews } from '../redux/actions/news';
 import { NavLink } from 'react-router-dom';
 
-function NewsPage() {
+function NewsPage(props) {
   const getMonth = (month) => {
     const monthes = [
       'янв',
@@ -26,14 +26,18 @@ function NewsPage() {
 
   const newsList = news.map((el, index) => {
     return (
-      <li className='news__item newspage__item' key={`${el}_${index}`}>
-        <time className='news__date' dateTime={el.date}>
-          <b className='news__day'>{el.date.split('-')[0]}</b>
-          <span className='news__month'>{getMonth(el.date.split('-')[1])}</span>
-          <div className='news__date--arrow'></div>
-        </time>
-        <p className='news__text newspage__text'>{el.text}</p>
-      </li>
+      <a name={`#${index}`} key={`${el}_${index}`}>
+        <li className='news__item newspage__item'>
+          <time className='news__date' dateTime={el.date}>
+            <b className='news__day'>{el.date.split('-')[0]}</b>
+            <span className='news__month'>
+              {getMonth(el.date.split('-')[1])}
+            </span>
+            <div className='news__date--arrow'></div>
+          </time>
+          <p className='news__text newspage__text'>{el.text}</p>
+        </li>
+      </a>
     );
   });
 

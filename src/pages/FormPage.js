@@ -12,7 +12,7 @@ function FormPage() {
     <main className='page-form'>
       <div className='page-form__wrapper'>
         <h1 className='page-form__title'>Запись на стрижку</h1>
-        <NavLink to='/' className='page-form__button button'>
+        <NavLink to='/' className='portfolio__button page-form__button button'>
           На главную
         </NavLink>
 

@@ -61,6 +61,9 @@ fieldset {
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: bold;
   }
+  &:focus {
+    border: 1px solid #999999;
+  }
 }
 
 .page-form__form textarea {
@@ -82,6 +85,9 @@ fieldset {
     line-height: 18px;
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: bold;
+  }
+  &:focus {
+    border: 1px solid #999999;
   }
 }
 
@@ -130,6 +136,23 @@ fieldset {
     position: absolute;
     left: 0;
     top: -60px;
+    border-radius: 50%;
+  }
+  &:hover::before {
+    border: 1px solid #d5c9bd;
+  }
+  &:active::before {
+    background-color: #ccc;
+  }
+  &:active::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #e5ddd5;
+    position: absolute;
+    left: 15px;
+    top: -45px;
     border-radius: 50%;
   }
 }
@@ -210,6 +233,24 @@ fieldset {
     position: absolute;
     left: 0;
     top: -8px;
+  }
+  &:hover::before {
+    border: 1px solid #d5c9bd;
+  }
+  &:active::before {
+    background-color: #d5c9bd;
+  }
+  &:active::after {
+    content: '';
+    width: 15px;
+    height: 7px;
+    border: 3px solid #000;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+    position: absolute;
+    left: 10px;
+    top: 4px;
   }
 }
 
@@ -297,6 +338,11 @@ fieldset {
     // width: 213px;
     justify-content: space-between;
     margin-bottom: 20px;
+    input {
+      &:focus {
+        border: 1px solid #000;
+      }
+    }
   }
   // .page-form__name input {
   //   &:first-of-type {

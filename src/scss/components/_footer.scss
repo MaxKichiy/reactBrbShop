@@ -19,6 +19,14 @@
   color: #ffffff;
   font-size: 18px;
   border: 1px solid #3e3e3e;
+  &:hover {
+    color: #808080;
+    background-color: #252525;
+    border: 1px solid #252525;
+  }
+  &:active {
+    background-color: #252525;
+  }
 }
 
 .social__title {
@@ -29,7 +37,14 @@
   width: 280px;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
+  &:hover {
+    background-color: #252525;
+  }
+  &:hover .social__item {
+    border: 1px solid #252525;
+    opacity: 0.3;
+  }
 }
 .social__item {
   display: flex;
@@ -50,10 +65,15 @@
 .page-footer__copyright {
   text-align: center;
 }
-.copyright__link.button {
+.copyright__link {
   margin-top: 10px;
   border: 1px solid #3e3e3e;
   color: #fff;
+  &:hover {
+    color: #808080;
+    background-color: #252525;
+    border: 1px solid #252525;
+  }
 }
 .copyright__text {
   font-weight: 400;

@@ -43,7 +43,7 @@ function Reviews() {
     <section className='reviews'>
       <div className='reviews__wrapper slider'>
         <h2 className='reviews__title'>Отзывы о нас</h2>
-        <a href='/' className='reviews__write button'>
+        <a href='/' className='portfolio__button reviews__write button'>
           Оставить свой
         </a>
         <div className='reviews__list slider__list'>

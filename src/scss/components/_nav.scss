@@ -89,6 +89,9 @@
 .site-list__item--active {
   pointer-events: none;
 }
+.site-list__item .site-list__item--active {
+  // background-color: #624530;
+}
 
 @media (max-width: $mobile-only) {
   .main-nav--closed .site-list__item {
