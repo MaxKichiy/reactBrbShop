@@ -5,8 +5,29 @@ import lico3 from '../scss/assets/lico3-mobile.jpg';
 import lico4 from '../scss/assets/lico4-mobile.jpg';
 import { NavLink } from 'react-router-dom';
 import WorksItem from './WorksItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchPortfolios } from '../redux/actions/portfolio';
 
 function Works() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPortfolios());
+  }, []);
+  const portfolio = useSelector((state) => state.portfolio.portfolio);
+
+  const portfolioList = portfolio.map((el, index) => (
+    <WorksItem
+      lico={el.picture.mob}
+      top={el.work_month}
+      type={el.cut_types}
+      key={`${el}_${index}`}
+    >
+      <h3 className='portfolio__item-title'>{el.name}</h3>
+      <p className='portfolio__text'>{el.text}</p>
+    </WorksItem>
+  ));
   return (
     <section className='portfolio'>
       <div className='main__arrow portfolio__arrow portfolio__arrow--white'></div>
@@ -15,32 +36,7 @@ function Works() {
         <NavLink to='/' className='portfolio__button button'>
           На главную
         </NavLink>
-        <ul className='portfolio__list'>
-          <WorksItem lico={lico1} top type={['haircut', 'mustache', 'beard']}>
-            <h3 className='portfolio__item-title'>Лжепётр Мчиславский</h3>
-            <p className='portfolio__text'>
-              Где я только не стригся, но так как делаете это вы — не умеет
-              никто другой! Еще раз спасибо и до скорого!
-            </p>
-          </WorksItem>
-          <WorksItem lico={lico2} type={['haircut']}>
-            <h3 className='portfolio__item-title'>Саша Мальцев</h3>
-            <p className='portfolio__text'>
-              Попросил омолодить и омолодили! Кто теперь скажет, что мне 45?
-            </p>
-          </WorksItem>
-          <WorksItem lico={lico3} type={['beard', 'mustache']}>
-            <h3 className='portfolio__item-title'>Владимир Иваныч</h3>
-            <p className='portfolio__text'>К зимнему сезону — готов!</p>
-          </WorksItem>
-          <WorksItem type={['haircut']} lico={lico4}>
-            <h3 className='portfolio__item-title'>Винстон Синий</h3>
-            <p className='portfolio__text'>
-              Как только заростаю и волосы начинают мешать видеть — бегом в
-              Бородинский!
-            </p>
-          </WorksItem>
-        </ul>
+        <ul className='portfolio__list'>{portfolioList}</ul>
       </div>
       <div className='main__arrow portfolio__arrow'></div>
     </section>
