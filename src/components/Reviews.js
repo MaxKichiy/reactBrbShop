@@ -2,29 +2,43 @@ import React, { useState } from 'react';
 import ReviewsTiles from './ReviewsTiles';
 import SliderButton from './SliderButton';
 import ReviewsButton from './ReviewsButton';
+import { useEffect } from 'react';
+import { fetchReviews } from '../redux/actions/reviews';
+import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import MyTextInput from '../components/Form/MyTextInput';
 
-function Reviews() {
+function Reviews(props) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, []);
+  const reviews = useSelector((state) => state.reviews.reviews);
+  const [isLoaded, setIsLoaded] = useState(
+    useSelector((state) => state.news.isLoaded)
+  );
+  const [showForm, setShowForm] = useState(false);
   const [isActive, setIsActive] = useState(0);
   const revTypes = ['first', 'second', 'third'];
-
-  const revs = [
+  const revs = reviews.map((el) => (
     <>
-      <cite className='reviews__author-name'>Трэвис Баркер</cite>
-      <br />
-      Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было
-      видно новую татуировку!
-    </>,
-    <>
-      <cite className='reviews__author-name'>Питер Паркер</cite>
-      <br />
-      Спасибо за стрижку! Теперь моя укладка будет держаться во время полетов.
-    </>,
-    <>
-      <cite className='reviews__author-name'>Джон Голт</cite>
-      <br />
-      Спасибо за то что вы есть! Теперь я уверен что нам нужен такой в долине.
-    </>,
-  ];
+      <p className='reviews__author-picture'>
+        <img
+          className='reviews__author-image'
+          src={el.logo}
+          alt='Фото человека'
+          width='50'
+          height='50'
+        />
+      </p>
+      <p className='reviews__text'>
+        <cite className='reviews__author-name'>{el.name}</cite>
+        <br />
+        {el.text}
+      </p>
+    </>
+  ));
 
   const onClickRevHandler = (data) => {
     setIsActive(revTypes.indexOf(data));
@@ -39,13 +53,57 @@ function Reviews() {
     }
   };
 
+  const onRevHandler = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <section className='reviews'>
       <div className='reviews__wrapper slider'>
         <h2 className='reviews__title'>Отзывы о нас</h2>
-        <a href='/' className='portfolio__button reviews__write button'>
+        <button
+          onClick={onRevHandler}
+          className='portfolio__button reviews__write button'
+        >
           Оставить свой
-        </a>
+        </button>
+        {showForm && (
+          <div className='reviews__post'>
+            <Formik
+              initialValues={{
+                name: '',
+                text: '',
+              }}
+              validationSchema={Yup.object({
+                name: Yup.string().required('Обязательное поле'),
+                text: Yup.string().required('Обязательно поле'),
+              })}
+              onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  setSubmitting(false);
+                }, 400);
+              }}
+            >
+              <Form className='page-form__form'>
+                <div className='page-form__name'>
+                  <MyTextInput name='name' type='text' placeholder='Ваше Имя' />
+                  <MyTextInput
+                    as='textarea'
+                    className='review'
+                    rows='7'
+                    name='text'
+                    type='text'
+                    placeholder='Ваш отзыв'
+                  />
+                  <button type='submit' className='form__button button'>
+                    Отправить
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+          </div>
+        )}
         <div className='reviews__list slider__list'>
           {revTypes.map((el, index) => {
             let activeRev = isActive === index ? true : false;

@@ -14,16 +14,7 @@ function ReviewsTiles(props) {
         { 'slider__item--active': props.active }
       )}
     >
-      <p className='reviews__author-picture'>
-        <img
-          className='reviews__author-image'
-          src={travis}
-          alt='Фото человека'
-          width='50'
-          height='50'
-        />
-      </p>
-      <p className='reviews__text'>{props.children}</p>
+      {props.children}
     </blockquote>
   );
 }

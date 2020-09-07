@@ -84,9 +84,20 @@
     flex-grow: 1;
     text-align: left;
   }
+  .reviews__post {
+    margin-top: 20px;
+    width: 640px;
+    .page-form__name {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
   .reviews__write {
     display: block;
     width: 160px;
+    font-family: 'PT Sans Narrow';
+    cursor: pointer;
+    background-color: #f8f5f2;
   }
 
   .reviews__item {
@@ -175,6 +186,9 @@
   }
   .reviews__toggles {
     width: 200px;
+  }
+  .reviews__post {
+    width: 960px;
   }
 
   .reviews__text {

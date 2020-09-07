@@ -5,7 +5,7 @@ const initialState = {
   isLoaded: false,
 };
 
-const news = (state = initialState, action) => {
+const newsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionType.SET_NEWS:
       return {
@@ -24,4 +24,4 @@ const news = (state = initialState, action) => {
   }
 };
 
-export default news;
+export default newsReducer;
