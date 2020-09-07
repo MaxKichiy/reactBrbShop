@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchPrices } from '../redux/actions/prices';
 
 function Price() {
+  useEffect(() => {
+    dispatch(fetchPrices());
+  }, []);
+  const dispatch = useDispatch();
+  const prices = useSelector((state) => state.prices.prices);
+  // console.log(prices);
+  const privetList = prices.map((el, index) => (
+    <tr key={`${el.price_count}_${index}`}>
+      <td className='price__description'>
+        <b>{el.price_name}</b>
+        <br />
+        <span>{el.washing ? '(с мытьём головы)' : '(без мытья)'}</span>
+      </td>
+      <td className='price__amount'>{`${el.price_amount} ${el.price_currency}`}</td>
+    </tr>
+  ));
   return (
     <section className='price'>
       <div className='price__wrapper'>
         <h2 className='price__title'>ПРЕЙСКУРАНТ</h2>
         <table className='price__table'>
           <tbody>
-            <tr>
+            {/* <tr>
               <td className='price__description'>
                 <b>Классическая стрижка</b>
                 <br />
@@ -46,7 +65,8 @@ function Price() {
                 <span>(с мытьём головы)</span>
               </td>
               <td className='price__amount'>1 000 руб.</td>
-            </tr>
+            </tr> */}
+            {privetList}
           </tbody>
         </table>
         <div className='price__discount'>
