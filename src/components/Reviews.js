@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
+import classNames from 'classnames';
 
 function Reviews(props) {
   const dispatch = useDispatch();
@@ -85,22 +86,33 @@ function Reviews(props) {
                 }, 400);
               }}
             >
-              <Form className='page-form__form'>
-                <div className='page-form__name'>
-                  <MyTextInput name='name' type='text' placeholder='Ваше Имя' />
-                  <MyTextInput
-                    as='textarea'
-                    className='review'
-                    rows='7'
-                    name='text'
-                    type='text'
-                    placeholder='Ваш отзыв'
-                  />
-                  <button type='submit' className='form__button button'>
-                    Отправить
-                  </button>
-                </div>
-              </Form>
+              {(formik) => (
+                <Form className='page-form__form'>
+                  <div className='page-form__name'>
+                    <MyTextInput
+                      name='name'
+                      type='text'
+                      placeholder='Ваше Имя'
+                    />
+                    <MyTextInput
+                      as='textarea'
+                      className='review'
+                      rows='7'
+                      name='text'
+                      type='text'
+                      placeholder='Ваш отзыв'
+                    />
+                    <button
+                      type='submit'
+                      className={classNames('form__button', 'button', {
+                        'button--disable': formik.isSubmitting || !formik.dirty,
+                      })}
+                    >
+                      Отправить
+                    </button>
+                  </div>
+                </Form>
+              )}
             </Formik>
           </div>
         )}

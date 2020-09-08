@@ -3,8 +3,12 @@ import { Formik, Form, yupToFormErrors } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
 import { NavLink, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { auth } from '../redux/actions/auth';
+import classNames from 'classnames';
 
 function Login(props) {
+  const dispatch = useDispatch();
   const clickHandler = () => {
     props.history.push(props.location.pathname.replace('/login', ''));
   };
@@ -27,55 +31,63 @@ function Login(props) {
             password: Yup.string().required('Обязательное поле'),
           })}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            dispatch(auth(values.login, values.password));
+            // setTimeout(() => {
+            //   alert(JSON.stringify(values, null, 2));
+            //   setSubmitting(false);
+            // }, 400);
           }}
         >
-          <Form className='login-form'>
-            <div className='login-from__wrapper'>
-              <MyTextInput
-                className='login__email'
-                name='login'
-                type='text'
-                placeholder='Ваш email'
-              />
-              <MyTextInput
-                className='login__password'
-                name='password'
-                type='text'
-                placeholder='Пароль'
-              />
-              <div className='checkbox__wrapper'>
+          {(formik) => (
+            <Form className='login-form'>
+              <div className='login-from__wrapper'>
                 <MyTextInput
-                  className='login__checkbox'
-                  label='Запомните меня'
-                  name='Запомните меня'
-                  type='checkbox'
-                  id='remember'
+                  className='login__email'
+                  name='login'
+                  type='text'
+                  placeholder='Ваш email'
                 />
-                <NavLink to='/forget'>Я забыл пароль!</NavLink>
+                <MyTextInput
+                  className='login__password'
+                  name='password'
+                  type='password'
+                  placeholder='Пароль'
+                />
+                <div className='checkbox__wrapper'>
+                  <MyTextInput
+                    className='login__checkbox'
+                    label='Запомните меня'
+                    name='Запомните меня'
+                    type='checkbox'
+                    id='remember'
+                  />
+                  <NavLink to='/forget'>Я забыл пароль!</NavLink>
+                </div>
               </div>
-            </div>
-            <div className='button__wrapper'>
-              <button type='submit' className='button login__button'>
-                Войти
-              </button>
-              <button
-                onClick={clickHandler}
-                type='button'
-                className='button  login__button--close '
-              >
-                Закрыть
-              </button>
-              <button
-                onClick={clickHandler}
-                type='button'
-                className='button  login__button--tablet '
-              ></button>
-            </div>
-          </Form>
+              <div className='button__wrapper'>
+                <button
+                  type='submit'
+                  className={classNames('login__button', 'button', {
+                    'button--disable': formik.isSubmitting || !formik.dirty,
+                  })}
+                >
+                  Войти
+                </button>
+                <button
+                  onClick={clickHandler}
+                  type='button'
+                  className='button  login__button--close '
+                >
+                  Закрыть
+                </button>
+                <button
+                  onClick={clickHandler}
+                  type='button'
+                  className='button  login__button--tablet '
+                ></button>
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </section>

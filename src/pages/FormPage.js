@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
-import { Formik, Form, useFormik, FormikContext } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
 import MyRadioInput from '../components/Form/MyRadioInput';
@@ -65,7 +65,6 @@ function FormPage() {
           }}
         >
           {(formik) => {
-            console.log(formik);
             return (
               <Form className='page-form__form'>
                 <div className='page-form__name'>

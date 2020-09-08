@@ -90,6 +90,10 @@
     .page-form__name {
       display: flex;
       flex-wrap: wrap;
+      .form_error {
+        position: relative;
+        top: 0;
+      }
     }
   }
   .reviews__write {
