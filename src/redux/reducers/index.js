@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import priceReducer from './prices';
 import portFolioReducer from './portfolio';
 import factReducer from './fact';
-import formReducer from './form';
+// import formReducer from './form';
 
 const rootReducer = combineReducers({
   news: newsReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   prices: priceReducer,
   portfolio: portFolioReducer,
   facts: factReducer,
-  form: formReducer,
+  // form: formReducer,
 });
 
 export default rootReducer;

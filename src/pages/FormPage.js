@@ -1,20 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import classNames from 'classnames';
+import { Formik, Form, useFormik, FormikContext } from 'formik';
 import * as Yup from 'yup';
-
-import axios from 'axios';
 import MyTextInput from '../components/Form/MyTextInput';
 import MyRadioInput from '../components/Form/MyRadioInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOrders } from '../redux/actions/form';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 function FormPage() {
   const dispatch = useDispatch();
-
-  const orderSucces = useSelector((state) => state.form.isOrderSucces);
 
   return (
     <main className='page-form'>
@@ -69,147 +64,161 @@ function FormPage() {
             // }, 400);
           }}
         >
-          <Form className='page-form__form'>
-            <div className='page-form__name'>
-              <MyTextInput name='firstName' type='text' placeholder='Имя' />
-              <MyTextInput name='lastName' type='text' placeholder='Фамилия' />
-              <MyTextInput
-                name='fatherName'
-                type='text'
-                placeholder='Отчество'
-              />
-            </div>
-            <div className='page-form__data'>
-              <MyTextInput
-                type='tel'
-                name='phone'
-                placeholder='Контактный телефон'
-              />
-              <MyTextInput
-                type='email'
-                name='email'
-                placeholder='Контактный e-mail'
-              />
-            </div>
-            <MyTextInput
-              as='textarea'
-              type='text'
-              name='info'
-              cols='37'
-              rows='6'
-              placeholder='Доп. информация для мастера'
-            />
-            <fieldset className='page-form__beard-radio beard-selector'>
-              <legend className='beard-selector__title'>
-                Выберите модель бороды:
-              </legend>
-              <ul>
-                <li className='beard-filter__option form__beard--admiral'>
-                  <MyRadioInput
-                    label='адмирал'
-                    type='radio'
-                    value='admiral'
-                    name='beard'
-                    id='admiral'
-                  />
-                </li>
-                <li className='beard-filter__option form__beard--wood'>
-                  <MyRadioInput
-                    label='лесоруб'
-                    type='radio'
-                    value='wood'
-                    name='beard'
-                    id='wood'
-                  />
-                </li>
-                <li className='beard-filter__option form__beard--polar'>
-                  <MyRadioInput
-                    label='полярник'
-                    type='radio'
-                    value='polar'
-                    name='beard'
-                    id='polar'
-                  />
-                </li>
-                <li className='beard-filter__option form__beard--boyar'>
-                  <MyRadioInput
-                    label='боярин'
-                    type='radio'
-                    value='boyar'
-                    name='beard'
-                    id='boyar'
-                  />
-                </li>
-                <li className='beard-filter__option form__beard--wiseman'>
-                  <MyRadioInput
-                    label='мудрец'
-                    type='radio'
-                    value='wiseman'
-                    name='beard'
-                    id='wiseman'
-                  />
-                </li>
-              </ul>
-            </fieldset>
-            <fieldset className='page-form__addition-settings addition-settings'>
-              <legend className='addition-settings__title'>
-                Дополнительные услуги:
-              </legend>
-              <ul>
-                <li className='addition-settings__option'>
+          {(formik) => {
+            console.log(formik);
+            return (
+              <Form className='page-form__form'>
+                <div className='page-form__name'>
+                  <MyTextInput name='firstName' type='text' placeholder='Имя' />
                   <MyTextInput
-                    label='Подкрасить бороду'
-                    type='checkbox'
-                    name='Подкрасить бороду'
-                    id='color'
+                    name='lastName'
+                    type='text'
+                    placeholder='Фамилия'
                   />
-                </li>
-                <li className='addition-settings__option'>
                   <MyTextInput
-                    label='Накрутить усы'
-                    type='checkbox'
-                    name='Накрутить усы'
-                    id='spin'
+                    name='fatherName'
+                    type='text'
+                    placeholder='Отчество'
                   />
-                </li>
-                <li className='addition-settings__option'>
+                </div>
+                <div className='page-form__data'>
                   <MyTextInput
-                    label='Причесать бороду'
-                    type='checkbox'
-                    name='Причесать бороду'
-                    id='comb'
+                    type='tel'
+                    name='phone'
+                    placeholder='Контактный телефон'
                   />
-                </li>
-                <li className='addition-settings__option'>
                   <MyTextInput
-                    label='Подровнять виски'
-                    type='checkbox'
-                    name='Подровнять виски'
-                    id='align'
+                    type='email'
+                    name='email'
+                    placeholder='Контактный e-mail'
                   />
-                </li>
-                <li className='addition-settings__option'>
-                  <MyTextInput
-                    label='Убрать седину'
-                    type='checkbox'
-                    name='Убрать седину'
-                    id='grey'
-                  />
-                </li>
-                <li className='addition-settings__option'>
-                  <MyTextInput
-                    label='Отполировать лысину'
-                    type='checkbox'
-                    name='Отполировать лысину'
-                    id='polish'
-                  />
-                </li>
-              </ul>
-            </fieldset>
-            <button className='form__button button' type='submit'>
-              Отправить заявку
-            </button>
-          </Form>
+                </div>
+                <MyTextInput
+                  as='textarea'
+                  type='text'
+                  name='info'
+                  cols='37'
+                  rows='6'
+                  placeholder='Доп. информация для мастера'
+                />
+                <fieldset className='page-form__beard-radio beard-selector'>
+                  <legend className='beard-selector__title'>
+                    Выберите модель бороды:
+                  </legend>
+                  <ul>
+                    <li className='beard-filter__option form__beard--admiral'>
+                      <MyRadioInput
+                        label='адмирал'
+                        type='radio'
+                        value='admiral'
+                        name='beard'
+                        id='admiral'
+                      />
+                    </li>
+                    <li className='beard-filter__option form__beard--wood'>
+                      <MyRadioInput
+                        label='лесоруб'
+                        type='radio'
+                        value='wood'
+                        name='beard'
+                        id='wood'
+                      />
+                    </li>
+                    <li className='beard-filter__option form__beard--polar'>
+                      <MyRadioInput
+                        label='полярник'
+                        type='radio'
+                        value='polar'
+                        name='beard'
+                        id='polar'
+                      />
+                    </li>
+                    <li className='beard-filter__option form__beard--boyar'>
+                      <MyRadioInput
+                        label='боярин'
+                        type='radio'
+                        value='boyar'
+                        name='beard'
+                        id='boyar'
+                      />
+                    </li>
+                    <li className='beard-filter__option form__beard--wiseman'>
+                      <MyRadioInput
+                        label='мудрец'
+                        type='radio'
+                        value='wiseman'
+                        name='beard'
+                        id='wiseman'
+                      />
+                    </li>
+                  </ul>
+                </fieldset>
+                <fieldset className='page-form__addition-settings addition-settings'>
+                  <legend className='addition-settings__title'>
+                    Дополнительные услуги:
+                  </legend>
+                  <ul>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Подкрасить бороду'
+                        type='checkbox'
+                        name='Подкрасить бороду'
+                        id='color'
+                      />
+                    </li>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Накрутить усы'
+                        type='checkbox'
+                        name='Накрутить усы'
+                        id='spin'
+                      />
+                    </li>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Причесать бороду'
+                        type='checkbox'
+                        name='Причесать бороду'
+                        id='comb'
+                      />
+                    </li>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Подровнять виски'
+                        type='checkbox'
+                        name='Подровнять виски'
+                        id='align'
+                      />
+                    </li>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Убрать седину'
+                        type='checkbox'
+                        name='Убрать седину'
+                        id='grey'
+                      />
+                    </li>
+                    <li className='addition-settings__option'>
+                      <MyTextInput
+                        label='Отполировать лысину'
+                        type='checkbox'
+                        name='Отполировать лысину'
+                        id='polish'
+                      />
+                    </li>
+                  </ul>
+                </fieldset>
+                <button
+                  className={classNames('form__button', 'button', {
+                    'button--disable': formik.isSubmitting || !formik.dirty,
+                  })}
+                  type='submit'
+                >
+                  Отправить заявку
+                </button>
+              </Form>
+            );
+          }}
         </Formik>
       </div>
       <div className='main__arrow news__arrow'></div>

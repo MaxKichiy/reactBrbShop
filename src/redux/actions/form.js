@@ -16,7 +16,3 @@ export const setOrders = (values, func) => (dispatch) => {
       // dispatch(setSucces());
     });
 };
-
-export const setSucces = () => ({
-  type: actionTypes.SET_ORDER,
-});
