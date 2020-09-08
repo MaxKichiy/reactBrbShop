@@ -17,7 +17,6 @@ function App(props) {
   useEffect(() => {
     dispatch(fetchNews());
   }, []);
-  // console.log(props);
   return (
     <div className='wrapper'>
       <Header />
