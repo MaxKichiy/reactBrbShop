@@ -6,8 +6,16 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import MyTextInput from '../components/Form/MyTextInput';
 import MyRadioInput from '../components/Form/MyRadioInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { setOrders } from '../redux/actions/form';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function FormPage() {
+  const dispatch = useDispatch();
+
+  const orderSucces = useSelector((state) => state.form.isOrderSucces);
+
   return (
     <main className='page-form'>
       <div className='page-form__wrapper'>
@@ -43,9 +51,7 @@ function FormPage() {
               .min(11111111, 'номер должен состоять из 10 цифр, начиная с 0')
               .lessThan(999999999, 'idi naxooy pidar')
               .required('Обязательное поле'),
-            email: Yup.string()
-              .email('Не верный email адресс')
-              .required('Обязательное поле'),
+            email: Yup.string().email('Не верный email адресс'),
             beard: Yup.string()
               .oneOf(
                 ['admiral', 'polar', 'wood', 'boyar', 'wiseman'],
@@ -53,15 +59,10 @@ function FormPage() {
               )
               .required('Обязательное поле'),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            axios
-              .post(
-                'https://reactbrbshop.firebaseio.com/orders.json',
-                JSON.stringify(values, null, 2)
-              )
-              .then((response) => {
-                setSubmitting(false);
-              });
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            dispatch(setOrders(values, resetForm));
+            // resetForm({ values: '' });
+            setSubmitting(false);
             // setTimeout(() => {
             //   alert(JSON.stringify(values, null, 2));
             //   setSubmitting(false);

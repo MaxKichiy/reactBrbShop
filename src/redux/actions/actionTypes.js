@@ -4,3 +4,4 @@ export const FETCH_REVIEWS = 'FETCH_REVIEWS';
 export const FETCH_PRICES = 'FETCH_PRICES';
 export const FETCH_PORTFOLIOS = 'FETCH_PORTFOLIOS';
 export const FETCH_FACTS = 'FETCH_FACTS';
+export const SET_ORDER = 'SET_ORDER';
