@@ -38,12 +38,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
-  &:hover {
-    background-color: #252525;
-  }
-  &:hover .social__item {
-    border: 1px solid #252525;
-    opacity: 0.3;
+  .social__item {
+    &:hover {
+      opacity: 0.3;
+    }
   }
 }
 .social__item {

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchPrices } from '../redux/actions/prices';
 
 function Price() {
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPrices());
-  }, []);
-  const dispatch = useDispatch();
+  }, [dispatch]);
   const prices = useSelector((state) => state.prices.prices);
   // console.log(prices);
   const privetList = prices.map((el, index) => (

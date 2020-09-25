@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import travis from '../scss/assets/travis.png';
 
 function ReviewsTiles(props) {
   return (

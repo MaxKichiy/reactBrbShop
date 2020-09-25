@@ -16,7 +16,7 @@ function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNews());
-  }, []);
+  }, [dispatch]);
   return (
     <div className='wrapper'>
       <Header />

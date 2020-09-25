@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
 import MyRadioInput from '../components/Form/MyRadioInput';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setOrders } from '../redux/actions/form';
 
 function FormPage() {

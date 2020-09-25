@@ -14,11 +14,11 @@ function Reviews(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchReviews());
-  }, []);
+  }, [dispatch]);
   const reviews = useSelector((state) => state.reviews.reviews);
-  const [isLoaded, setIsLoaded] = useState(
-    useSelector((state) => state.news.isLoaded)
-  );
+  // const [isLoaded, setIsLoaded] = useState(
+  //   useSelector((state) => state.news.isLoaded)
+  // );
   const [showForm, setShowForm] = useState(false);
   const [isActive, setIsActive] = useState(0);
   const revTypes = ['first', 'second', 'third'];

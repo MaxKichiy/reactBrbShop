@@ -7,10 +7,9 @@ function Stats() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchFacts());
-  }, []);
+  }, [dispatch]);
 
   const facts = useSelector((state) => state.facts.facts);
-  console.log(facts);
 
   const factList = facts.map((el) => (
     <tr>

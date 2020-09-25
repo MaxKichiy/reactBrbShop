@@ -3,7 +3,6 @@ import desktopHeader from '../scss/assets/desktop-header.svg';
 import tabletHeader from '../scss/assets/logotype-tablet.svg';
 import mobileHeader from '../scss/assets/logotype-mob.svg';
 import Navigation from './Navigation';
-import { NavLink } from 'react-router-dom';
 
 const Header = React.memo(function Header() {
   return (

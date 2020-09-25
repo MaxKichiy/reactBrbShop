@@ -1,8 +1,4 @@
 import React from 'react';
-import lico1 from '../scss/assets/lico1-mobile.jpg';
-import lico2 from '../scss/assets/lico2-mobile.jpg';
-import lico3 from '../scss/assets/lico3-mobile.jpg';
-import lico4 from '../scss/assets/lico4-mobile.jpg';
 import { NavLink } from 'react-router-dom';
 import WorksItem from './WorksItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +10,7 @@ function Works() {
 
   useEffect(() => {
     dispatch(fetchPortfolios());
-  }, []);
+  }, [dispatch]);
   const portfolio = useSelector((state) => state.portfolio.portfolio);
 
   const portfolioList = portfolio.map((el, index) => (

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchNews } from '../redux/actions/news';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 function NewsPage(props) {
@@ -21,12 +20,11 @@ function NewsPage(props) {
     ];
     return monthes[month - 1];
   };
-  const dispatch = useDispatch();
   const news = useSelector((state) => state.news.news);
 
   const newsList = news.map((el, index) => {
     return (
-      <a name={`#${index}`} key={`${el}_${index}`}>
+      <a href name={`#${index}`} key={`${el}_${index}`}>
         <li className='news__item newspage__item'>
           <time className='news__date' dateTime={el.date}>
             <b className='news__day'>{el.date.split('-')[0]}</b>
