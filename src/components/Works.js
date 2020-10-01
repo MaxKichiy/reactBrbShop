@@ -8,6 +8,7 @@ import { fetchPortfolios } from '../redux/actions/portfolio';
 function Works() {
   const dispatch = useDispatch();
 
+  let windowWidth = window.innerWidth;
   useEffect(() => {
     dispatch(fetchPortfolios());
   }, [dispatch]);
@@ -15,7 +16,13 @@ function Works() {
 
   const portfolioList = portfolio.map((el, index) => (
     <WorksItem
-      lico={el.picture.mob}
+      lico={
+        windowWidth >= 1200
+          ? el.picture.desk
+          : windowWidth >= 768
+          ? el.picture.tab
+          : el.picture.mob
+      }
       top={el.work_month}
       type={el.cut_types}
       key={`${el}_${index}`}
