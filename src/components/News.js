@@ -26,7 +26,7 @@ const News = React.memo(function News() {
   const newsList = useSelector((state) => state.news.news);
   const newsListSmall = newsList.map((el, index) => {
     return (
-      <NavLink to={`/news#${index}`} key={`${el}_${index}`}>
+      <NavLink to={`/news/${index}`} key={`${el}_${index}`}>
         <li className='news__item'>
           <time className='news__date' dateTime={el.date}>
             <b className='news__day'>{el.date.split('-')[0]}</b>

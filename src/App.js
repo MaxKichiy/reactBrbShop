@@ -32,13 +32,16 @@ function App(props) {
     <div className='wrapper'>
       <Header />
       <div className='content'>
-        {location.pathname.includes('/login') && <Login />}
-        {location.pathname.includes('/signup') && <Signup />}
-        {location.pathname.includes('/forgot') && <Forgot />}
-        {location.pathname.includes('/update-profile') && <UpdateProfile />}
+        <Switch>
+          {location.pathname.includes('/login') && <Login />}
+          {location.pathname.includes('/signup') && <Signup />}
+          {location.pathname.includes('/forgot') && <Forgot />}
+          {location.pathname.includes('/update-profile') && <UpdateProfile />}
+        </Switch>
         <Switch>
           <Route path='/portfolio' component={Portfolio} />
           <Route path='/form' component={FormPage} />
+          <Route path='/news/:id' component={NewsPage} />
           <Route path='/news' component={NewsPage} />
           <Route path='/' component={Main} />
         </Switch>

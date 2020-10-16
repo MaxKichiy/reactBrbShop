@@ -39,6 +39,7 @@
   justify-content: space-between;
   margin-bottom: 30px;
   .social__item {
+    cursor: pointer;
     &:hover {
       opacity: 0.3;
     }
@@ -69,8 +70,8 @@
   color: #fff;
   &:hover {
     color: #808080;
-    background-color: #252525;
-    border: 1px solid #252525;
+    background-color: #292929;
+    border: 1px solid #2f2f2f;
   }
 }
 .copyright__text {

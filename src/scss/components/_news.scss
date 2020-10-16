@@ -21,11 +21,17 @@
   text-align: center;
 }
 
+.newspage__wrapper .news__list {
+  display: block;
+}
+
 .news__list {
   display: flex;
   flex-wrap: wrap;
   a {
+    max-height: 300px;
     color: #000000;
+    overflow: hidden;
     &:hover .news__date {
       background-color: #826550;
       text-decoration: underline;
@@ -78,6 +84,9 @@
       background-color: #000;
     }
   }
+  .news__item {
+    justify-content: start;
+  }
 }
 
 .news__item {
@@ -87,9 +96,12 @@
   padding-bottom: 20px;
   border-bottom: 1px solid #e5ddd5;
   align-items: center;
+
   &:last-of-type {
     border-bottom: none;
   }
+
+  justify-content: center;
 }
 .news__date {
   position: relative;
