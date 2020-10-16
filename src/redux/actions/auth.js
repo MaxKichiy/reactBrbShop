@@ -1,6 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-import axios from 'axios';
-import { setLoaded } from './news';
 import { auth } from '../../firebase';
 
 export const signup = (email, password) => {

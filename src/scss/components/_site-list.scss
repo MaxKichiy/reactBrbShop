@@ -2,6 +2,11 @@
 
 .site-list {
   font-weight: bold;
+  .site-list__item--active {
+    a {
+      background-color: #886e5b;
+    }
+  }
 }
 .site-list a {
   display: block;
@@ -38,6 +43,11 @@
     justify-content: flex-start;
 
     width: 570px;
+    .site-list__item--active {
+      a {
+        background-color: transparent;
+      }
+    }
   }
 
   .site-list__item {

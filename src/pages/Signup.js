@@ -3,14 +3,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { signup } from '../redux/actions/auth';
 
 function Signup(props) {
   const [error, setError] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
   const clickHandler = () => {
     history.push(history.location.pathname.replace('/signup', ''));
   };

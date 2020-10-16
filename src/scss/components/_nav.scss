@@ -90,7 +90,7 @@
   pointer-events: none;
 }
 .site-list__item .site-list__item--active {
-  // background-color: #624530;
+  background-color: #624530;
 }
 
 @media (max-width: $mobile-only) {
@@ -105,7 +105,6 @@
   .main-nav--closed .site-list__item--active a {
     padding-right: 70px;
     padding-left: 70px;
-
     text-align: center;
   }
   .main-nav--closed .user-list__item {
@@ -118,7 +117,6 @@
     left: 70px;
     z-index: 10;
     // min-height: 80vh;
-
     background-color: #6a4d38;
   }
   .main-nav--opened .main-nav__wrapper::before {

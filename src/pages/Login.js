@@ -5,11 +5,9 @@ import MyTextInput from '../components/Form/MyTextInput';
 import { Link, useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import { login } from '../redux/actions/auth';
-import { useDispatch } from 'react-redux';
 
 function Login(props) {
   const [error, setError] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
   const clickHandler = () => {
     history.push(history.location.pathname.replace('/login', ''));

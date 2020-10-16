@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
-import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { logout, updateEmail, updatePassword } from '../redux/actions/auth';
 
@@ -12,7 +12,6 @@ function UpdateProfile() {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const [error, setError] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
   const clickHandler = () => {
     history.push(history.location.pathname.replace('/update-profile', ''));
   };

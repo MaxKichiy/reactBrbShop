@@ -7,7 +7,7 @@ function Footer() {
         <div className='page-footer__contacts contacts'>
           <b className='contacts__title'>BrbShop</b>
           <p className='contacts__text'>
-            г. Санкт-Петербург, ул. Большая Конюшенная 19/8 <br />
+            г. Киев, ул. Пушкина дом Клапаушкина <br />
             <span className='contacts__phone--tablet'>
               Тел.: +38(010)2012113
             </span>

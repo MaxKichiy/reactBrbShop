@@ -6,19 +6,11 @@ const NavigationSiteItem = React.memo(function NavigationSiteItem(props) {
   return (
     <li
       onClick={() => props.onClick(props.children)}
-      className={classNames(
-        'site-list__item',
-
-        {
-          'site-list__item--active': props.active === props.children,
-        }
-      )}
+      className={classNames('site-list__item', {
+        'site-list__item--active': props.active === props.children,
+      })}
     >
-      <NavLink
-        to={props.link}
-        activeClassName='site-list__item--active'
-        exact={props.exact}
-      >
+      <NavLink to={props.link} activeClassName='site-list__item--active'>
         {props.children}
       </NavLink>
     </li>
