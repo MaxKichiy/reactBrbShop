@@ -5,10 +5,12 @@
 
   display: block;
   padding: 17px 21px;
-  padding-left: 49px;
   line-height: 18px;
   color: #ffffff;
   text-decoration: none;
+  svg {
+    display: none;
+  }
 }
 
 .user-list__login-icon {
@@ -31,8 +33,13 @@
     width: 60px;
     height: 70px;
     padding: 0;
+    display: flex;
+    align-items: center;
 
     font-size: 0;
+    svg {
+      display: block;
+    }
 
     &:hover .user-list__login-icon {
       opacity: 1;
@@ -75,6 +82,9 @@
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
+    svg {
+      display: none;
+    }
 
     &:hover {
       color: #000000;

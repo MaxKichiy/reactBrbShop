@@ -3,50 +3,50 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../components/Form/MyTextInput';
 import { Link, useHistory } from 'react-router-dom';
-import classNames from 'classnames';
-import { login } from '../redux/actions/auth';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
+import { signup } from '../redux/actions/auth';
 
-function Login(props) {
+function Signup(props) {
   const [error, setError] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
   const clickHandler = () => {
-    history.push(history.location.pathname.replace('/login', ''));
+    history.push(history.location.pathname.replace('/signup', ''));
   };
   return (
-    <section className='login'>
+    <section className='login login-signup'>
       <div className='login__wrapper'>
         <h2 className='login__title'>Личный кабинет</h2>
-        <p className='login__text'>Введите свой логин и пароль, чтобы войти</p>
+        <p className='login__text'>Введите логин и пароль, для регистрации</p>
         {error && (
           <div style={{ textAlign: 'center', color: 'red' }}>{error}</div>
         )}
+
         <Formik
           initialValues={{
             login: '',
             password: '',
-            remember: '',
+            confirmedPass: '',
           }}
           validationSchema={Yup.object({
             login: Yup.string()
               .email('Не верный email адрес')
               .required('Обязательное поле'),
             password: Yup.string().required('Обязательное поле'),
+            confirmedPass: Yup.string().required('Обязательное поле'),
           })}
           onSubmit={async (values, { setSubmitting }) => {
             setError('');
+            if (values.confirmedPass !== values.password) {
+              return setError('Пароли не совпадают');
+            }
             try {
-              await login(values.login, values.password);
+              await signup(values.login, values.password);
               history.push('/');
             } catch {
               return setError('Something went wrong');
             }
-
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
           }}
         >
           {(formik) => (
@@ -64,22 +64,12 @@ function Login(props) {
                   type='password'
                   placeholder='Пароль'
                 />
-                <div className='checkbox__wrapper'>
-                  <MyTextInput
-                    className='login__checkbox'
-                    label='Запомните меня'
-                    name='Запомните меня'
-                    type='checkbox'
-                    id='remember'
-                  />
-                  <Link
-                    to={(location) =>
-                      location.pathname.replace('/login', '/forgot')
-                    }
-                  >
-                    Я забыл пароль!
-                  </Link>
-                </div>
+                <MyTextInput
+                  className='login__password'
+                  name='confirmedPass'
+                  type='password'
+                  placeholder='Повторите пароль'
+                />
               </div>
               <div className='button__wrapper'>
                 <button
@@ -88,7 +78,7 @@ function Login(props) {
                     'button--disable': formik.isSubmitting || !formik.dirty,
                   })}
                 >
-                  Войти
+                  Зарегистрировать
                 </button>
                 <button
                   onClick={clickHandler}
@@ -107,11 +97,11 @@ function Login(props) {
           )}
         </Formik>
         <div className='login__text'>
-          Нет аккаунта?
+          Есть аккаунт?
           <Link
-            to={(location) => location.pathname.replace('/login', '/signup')}
+            to={(location) => location.pathname.replace('/signup', '/login')}
           >
-            &nbsp; Зарегистрируйтесь
+            &nbsp; Залогинтесь
           </Link>
         </div>
       </div>
@@ -119,4 +109,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Signup;

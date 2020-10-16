@@ -24,7 +24,7 @@ function NewsPage(props) {
 
   const newsList = news.map((el, index) => {
     return (
-      <a href name={`#${index}`} key={`${el}_${index}`}>
+      <a name={`#${index}`} key={`${el}_${index}`}>
         <li className='news__item newspage__item'>
           <time className='news__date' dateTime={el.date}>
             <b className='news__day'>{el.date.split('-')[0]}</b>
