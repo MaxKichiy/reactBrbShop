@@ -4,6 +4,11 @@ import SliderButton from './SliderButton';
 import ReviewsButton from './ReviewsButton';
 import { useEffect } from 'react';
 import { fetchReviews } from '../redux/actions/reviews';
+import {
+  CSSTransition,
+  TransitionGroup,
+  Transition,
+} from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -14,7 +19,7 @@ function Reviews(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchReviews());
-  }, [dispatch]);
+  }, []);
   const reviews = useSelector((state) => state.reviews.reviews);
   // const [isLoaded, setIsLoaded] = useState(
   //   useSelector((state) => state.news.isLoaded)
@@ -120,13 +125,20 @@ function Reviews(props) {
           {revTypes.map((el, index) => {
             let activeRev = isActive === index ? true : false;
             return (
-              <ReviewsTiles
-                active={activeRev}
-                type={el}
+              <CSSTransition
                 key={`${el}_${index}_rev`}
+                in={activeRev}
+                timeout={500}
+                classNames='my-node'
               >
-                {revs[index]}
-              </ReviewsTiles>
+                <ReviewsTiles
+                  key={`${el}_${index}_rev`}
+                  active={activeRev}
+                  type={el}
+                >
+                  {revs[index]}
+                </ReviewsTiles>
+              </CSSTransition>
             );
           })}
 

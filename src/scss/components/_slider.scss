@@ -2,6 +2,7 @@
 
 .slider__item {
   display: none;
+
   &--active {
     display: block;
   }
@@ -42,6 +43,7 @@
   cursor: pointer;
   &--active {
     background-color: #000;
+    transition: background-color 0.3s ease-in-out;
   }
   &::before {
     content: '';

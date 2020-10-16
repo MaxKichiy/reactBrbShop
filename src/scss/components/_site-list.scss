@@ -71,6 +71,8 @@
         height: 3px;
 
         background-color: #826550;
+
+        transition: background-color 1s ease-in-out;
       }
     }
   }
@@ -105,7 +107,17 @@
   .site-list__item {
     margin-right: 0;
 
+    @keyframes appear {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: 30px;
+      }
+    }
     &--active::after {
+      transition: appear 1s ease;
+
       right: 30px;
       left: 30px;
     }
@@ -120,6 +132,7 @@
       color: #000000;
 
       background-color: #ffffff;
+      transition: background-color 0.3s ease-in-out;
     }
     &:active {
       color: rgba(0, 0, 0, 0.3);

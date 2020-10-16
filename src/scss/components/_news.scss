@@ -34,23 +34,29 @@
     overflow: hidden;
     &:hover .news__date {
       background-color: #826550;
+
+      transition: background-color 0.3s ease-in-out;
       text-decoration: underline;
       // color: #826550;
       // opacity: 0.3;
     }
     &:active .news__date {
       background-color: #6a4d38;
+
       text-decoration: underline;
       // color: #826550;
       // opacity: 0.3;
     }
     &:hover .news__date--arrow::after {
       background-color: #826550;
+
+      transition: background-color 0.3s ease-in-out;
     }
     &:active .news__date--arrow::after {
       background-color: #6a4d38;
     }
     &:hover .news__date--arrow::before {
+      transition: background-color 0.3s ease-in-out;
       background-color: #826550;
     }
     &:hover {
@@ -69,18 +75,25 @@
   a {
     &:hover .news__date {
       background-color: #000;
+
+      transition: background-color 0.3s ease-in-out;
       text-decoration: none;
       // color: #826550;
-      // opacity: 0.3;
+      opacity: 0.9;
     }
 
     &:hover {
       color: #000;
+
+      transition: background-color 0.3s ease-in-out;
     }
     &:hover .news__date--arrow::after {
       background-color: #000;
+
+      transition: background-color 0.3s ease-in-out;
     }
     &:hover .news__date--arrow::before {
+      transition: background-color 0.3s ease-in-out;
       background-color: #000;
     }
   }

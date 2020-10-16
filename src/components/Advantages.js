@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AdvntagesTiles from './AdvntagesTiles';
 import SliderButton from './SliderButton';
 
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 function Advantages() {
   const [isActive, setIsActive] = useState(0);
   const advTypes = ['fast', 'cool', 'expensive'];
@@ -42,7 +44,7 @@ function Advantages() {
           {advTypes.map((el, index) => {
             let activOn = isActive === index ? true : false;
             return (
-              <AdvntagesTiles active={activOn} type={el} key={`${index}_adv`}>
+              <AdvntagesTiles key={`${index}_adv`} active={activOn} type={el}>
                 {advInside[index]}
               </AdvntagesTiles>
             );
