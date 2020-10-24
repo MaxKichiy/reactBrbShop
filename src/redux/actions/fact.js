@@ -6,7 +6,8 @@ export const fetchFacts = () => (dispatch) => {
   dispatch(setLoaded(false));
   axios
     .get('https://reactbrbshop.firebaseio.com/facts.json')
-    .then(({ data }) => dispatch(setFacts(data)));
+    .then(({ data }) => dispatch(setFacts(data)))
+    .then(dispatch(setLoaded(true)));
 };
 
 export const setFacts = (facts) => ({

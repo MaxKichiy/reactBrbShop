@@ -6,12 +6,7 @@ import { useEffect } from 'react';
 import { fetchPortfolios } from '../redux/actions/portfolio';
 
 function Works() {
-  const dispatch = useDispatch();
-
   let windowWidth = window.innerWidth;
-  useEffect(() => {
-    dispatch(fetchPortfolios());
-  }, [dispatch]);
   const portfolio = useSelector((state) => state.portfolio.portfolio);
 
   const portfolioList = portfolio.map((el, index) => (

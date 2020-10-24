@@ -4,11 +4,7 @@ import SliderButton from './SliderButton';
 import ReviewsButton from './ReviewsButton';
 import { useEffect } from 'react';
 import { fetchReviews } from '../redux/actions/reviews';
-import {
-  CSSTransition,
-  TransitionGroup,
-  Transition,
-} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';

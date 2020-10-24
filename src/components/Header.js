@@ -17,7 +17,7 @@ const Header = React.memo(function Header() {
     location = `/` + location[0].split('/')[1];
   }
 
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState('Главная');
 
   useEffect(() => {
     setActiveLink(links[location]);

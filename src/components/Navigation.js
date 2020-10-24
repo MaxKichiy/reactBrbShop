@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavigationSiteItem from './NavigationSiteItem';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
+import { TransitionGroup } from 'react-transition-group';
 
 const Navigation = React.memo(function Navigation({ activeLink }) {
   const [isOpen, setIsOpen] = useState(false);

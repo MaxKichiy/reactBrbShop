@@ -14,12 +14,20 @@ import Signup from './pages/Signup';
 import Forgot from './pages/Forgot';
 import { auth } from './firebase';
 import UpdateProfile from './pages/UpdateProfile';
+import { fetchFacts } from './redux/actions/fact';
+import { fetchPortfolios } from './redux/actions/portfolio';
 
 function App(props) {
   const location = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNews());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchFacts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchPortfolios());
   }, [dispatch]);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {

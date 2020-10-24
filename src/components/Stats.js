@@ -1,18 +1,11 @@
 import React from 'react';
-import { fetchFacts } from '../redux/actions/fact';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-function Stats() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchFacts());
-  }, [dispatch]);
-
+const Stats = React.memo(function Stats() {
   const facts = useSelector((state) => state.facts.facts);
 
-  const factList = facts.map((el) => (
-    <tr>
+  const factList = facts.map((el, index) => (
+    <tr key={`${index}`}>
       <td className='stats__value'>
         {el.number} <sup>*</sup>
       </td>
@@ -24,6 +17,15 @@ function Stats() {
     </tr>
   ));
 
+  const finalList = (array) => {
+    let temp = [];
+    for (let n = 0; n < 4; n++) {
+      temp.push(
+        ...array.splice(Math.floor(Math.random() * factList.length), 1)
+      );
+    }
+    return temp;
+  };
   return (
     <section className='stats'>
       <header className='stats__header'>
@@ -40,55 +42,13 @@ function Stats() {
         </small>
       </header>
       <table className='stats__list'>
-        <tbody>
-          {factList[Math.floor(Math.random() * factList.length)]}
-          {factList[Math.floor(Math.random() * factList.length)]}
-          {factList[Math.floor(Math.random() * factList.length)]}
-          {factList[Math.floor(Math.random() * factList.length)]}
-          {/* <tr>
-            <td className='stats__value'>
-              1 500 <sup>*</sup>
-            </td>
-            <td className='stats__field'>
-              рублей <br />
-              вложений
-            </td>
-          </tr>
-          <tr>
-            <td className='stats__value'>
-              7 200 <sup>*</sup>
-            </td>
-            <td className='stats__field'>
-              секунд &nbsp;
-              <br />
-              времени мастера
-            </td>
-          </tr>
-          <tr>
-            <td className='stats__value'>
-              90 000 <sup>*</sup>
-            </td>
-            <td className='stats__field'>
-              постриженных <br />
-              волос
-            </td>
-          </tr>
-          <tr>
-            <td className='stats__value'>
-              50 000 <sup>*</sup>
-            </td>
-            <td className='stats__field'>
-              лайков и <br />
-              комплиментов
-            </td>
-          </tr> */}
-        </tbody>
+        <tbody>{finalList(factList)}</tbody>
       </table>
       <small className='stats__legend stats__legend--bottom'>
         <sup>*</sup> — приведённые данные ложь
       </small>
     </section>
   );
-}
+});
 
 export default Stats;
