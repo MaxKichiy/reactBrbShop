@@ -3,6 +3,7 @@
 .content {
   position: relative;
 }
+
 .login {
   position: absolute;
   left: 50%;
@@ -150,10 +151,40 @@ button.user-list__login {
 }
 
 @media (min-width: $tablet-width) {
+  // @keyframes pop-down {
+  //   0% {
+  //     transform: translateY(-500%);
+  //   }
+  //   100% {
+  //     transform: translateY(0);
+  //   }
+  // }
+
+  // .pop-down-enter {
+  //   opacity: 0;
+  //   transform: translateY(-300%);
+  // }
+  // .pop-down-enter-active {
+  //   opacity: 1;
+  //   transform: translateY(0);
+  //   transition: opacity 300ms, transform 300ms;
+  // }
+  // .pop-down-exit {
+  //   opacity: 1;
+  //   transform: translateY(0);
+  // }
+  // .pop-down-exit-active {
+  //   opacity: 0;
+  //   transform: translateY(300%);
+  //   transition: opacity 300ms, transform 300ms;
+  // }
+
   .login {
     margin-top: -185px;
     width: 460px;
     margin-left: -230px;
+
+    // animation: pop-down 0.4s ease-in-out;
   }
   .login-from__wrapper {
     position: relative;

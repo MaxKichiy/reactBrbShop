@@ -39,10 +39,12 @@ function App(props) {
       <Header />
       <div className='content'>
         <Switch>
-          {location.pathname.includes('/login') && <Login />}
+          {location.pathname.includes('/login') && <Login show />}
           {location.pathname.includes('/signup') && <Signup />}
           {location.pathname.includes('/forgot') && <Forgot />}
-          {location.pathname.includes('/update-profile') && <UpdateProfile />}
+          {location.pathname.includes('/update-profile') && (
+            <UpdateProfile show />
+          )}
         </Switch>
         <Switch>
           <Route path='/portfolio' component={Portfolio} />

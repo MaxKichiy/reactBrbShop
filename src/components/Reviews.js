@@ -4,7 +4,7 @@ import SliderButton from './SliderButton';
 import ReviewsButton from './ReviewsButton';
 import { useEffect } from 'react';
 import { fetchReviews } from '../redux/actions/reviews';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -124,7 +124,7 @@ function Reviews(props) {
               <CSSTransition
                 key={`${el}_${index}_rev`}
                 in={activeRev}
-                timeout={500}
+                timeout={300}
                 classNames='my-node'
               >
                 <ReviewsTiles
